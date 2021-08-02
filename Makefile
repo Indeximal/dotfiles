@@ -1,10 +1,13 @@
-user:
-	./create_user.sh
+link:
+	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+
+clean:
+	rm -f ~/.gitconfig
 	
-essentials:
+essentials: link
 	./install_essentials.sh
 	
 	
 all: essentials
 
-.PHONY: user essentials all
+.PHONY: essentials all link clean

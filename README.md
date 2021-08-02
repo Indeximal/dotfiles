@@ -7,7 +7,8 @@ Especially his conviction of idempotent shell scripts was important.
 ## Usage
 Clone the repo and run
 ˋˋˋ
-make user
+./create_user.sh
+su - cyrill
 make essentials
 ˋˋˋ
 
