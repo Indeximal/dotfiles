@@ -13,3 +13,8 @@ make essentials
 ˋˋˋ
 
 Creating the user is optional and only designed for digitalocean right now
+
+## Todos
+[ ] Experiment with a Makefile
+[ ] install Mosh, Docker, a better Samba and GDrive Fuse
+
