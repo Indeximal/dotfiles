@@ -1,20 +1,16 @@
 DEVDIR = ~/dev/
 
+all: devdir link
+		
 link:
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 
-clean:
-	rm -f ~/.gitconfig
-	
-essentials: devdir link
-	./install_essentials.sh
-	
 devdir: $(DEVDIR)
 $(DEVDIR):
-	mkdir -p $@
+	mkdir -p $@	
 	
-	
-	
-all: essentials
+clean:
+	rm -f ~/.gitconfig
 
-.PHONY: essentials all link clean
+.PHONY: all link devdir clean
+	
