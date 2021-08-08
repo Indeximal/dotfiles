@@ -6,3 +6,5 @@
 	c = commit
 	aa = add --all
 	cc = commit --all
+[credential]
+	helper = store
