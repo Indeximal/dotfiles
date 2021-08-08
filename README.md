@@ -11,12 +11,12 @@ This might easly change in the future.
 
 ## Usage
 Clone the repo and run
-ˋˋˋ
+```
 # Link dotfiles and set up environment 
 make all
 # Install essential executables
 make -f Installers.make essentials
-ˋˋˋ
+```
 
 When creating a new droplet on DigitalOcean use this code as user data.
 ```
