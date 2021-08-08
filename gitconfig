@@ -1,0 +1,8 @@
+[user]
+	email = indeximal@gmail.com
+	name = Indeximal
+[alias]
+	s = status
+	c = commit
+	aa = add --all
+	cc = commit --all
