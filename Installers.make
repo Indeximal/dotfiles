@@ -1,3 +1,5 @@
+SHELL = /bin/bash
+
 MOSH = /usr/bin/mosh
 DOCKER = /usr/bin/docker
 GDRIVEFUSE = /usr/bin/google-drive-ocamlfuse
@@ -19,23 +21,23 @@ $(DOCKER):
 	curl -fsSL https://get.docker.com -o get-docker.sh
 	sudo sh get-docker.sh
 
-vpnserver: $(DOCKER)
-	if [-z $(shell docker ps -qf name=ipsec-vpn-server)]; then \ 
-		if [! -f ./vpn.env]; then \
-			echo "VPN Enviroment file not found!"; \
-			exit 1; \
-		fi; \
-		sudo docker run \
-	    --name ipsec-vpn-server \
-	    --env-file ./vpn.env \
-	    --restart=always \
-	    -v ikev2-vpn-data:/etc/ipsec.d \
-	    -p 500:500/udp \
-	    -p 4500:4500/udp \
-	    -d --privileged \
-	    hwdsl2/ipsec-vpn-server;
-	fi;
-	
+./vpn.env:
+	$(error VPN environment file not found!)
+vpnserver: $(DOCKER) ./vpn.env
+	if [ -z $$(sudo docker ps -qf name=ipsec-vpn-server) ]; then \
+	  sudo docker run \
+	  --name ipsec-vpn-server \
+	  --env-file ./vpn.env \
+	  --restart=always \
+	  -v ikev2-vpn-data:/etc/ipsec.d \
+	  -p 500:500/udp \
+	  -p 4500:4500/udp \
+	  -d --privileged \
+	  hwdsl2/ipsec-vpn-server; \
+	else \
+	  echo "VPN server already running"; \
+	fi
+
 $(ADDAPTREPO):
 	sudo apt-get install software-properties-common
 
