@@ -20,11 +20,11 @@ $(DOCKER):
 	sudo sh get-docker.sh
 
 vpnserver: $(DOCKER)
-	if [-z $(docker ps -qf name=ipsec-vpn-server)]; then
-		if [! -f ./vpn.env]; then
-			echo "VPN Enviroment file not found!"
-			exit 1
-		fi	
+	if [-z $(shell docker ps -qf name=ipsec-vpn-server)]; then \ 
+		if [! -f ./vpn.env]; then \
+			echo "VPN Enviroment file not found!"; \
+			exit 1; \
+		fi; \
 		sudo docker run \
 	    --name ipsec-vpn-server \
 	    --env-file ./vpn.env \
@@ -33,8 +33,8 @@ vpnserver: $(DOCKER)
 	    -p 500:500/udp \
 	    -p 4500:4500/udp \
 	    -d --privileged \
-	    hwdsl2/ipsec-vpn-server
-	fi	
+	    hwdsl2/ipsec-vpn-server;
+	fi;
 	
 $(ADDAPTREPO):
 	sudo apt-get install software-properties-common
