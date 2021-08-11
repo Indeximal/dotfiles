@@ -14,8 +14,9 @@ essentials: mosh
 
 mosh: $(MOSH)
 $(MOSH):
-	sudo apt-get install mosh
+	sudo apt-get --yes install mosh
 
+# There was an error once, which I fixed with https://blog.adriaan.io/install-docker-on-raspberry-pi-4-with-ubuntu-20-04.html
 docker: $(DOCKER)
 $(DOCKER):
 	curl -fsSL https://get.docker.com -o get-docker.sh
@@ -39,11 +40,11 @@ vpnserver: $(DOCKER) ./vpn.env
 	fi
 
 $(ADDAPTREPO):
-	sudo apt-get install software-properties-common
+	sudo apt-get --yes install software-properties-common
 
 gdrivefuse: $(GDRIVEFUSE)
 $(GDRIVEFUSE): $(ADDAPTREPO)
 	sudo add-apt-repository ppa:alessandro-strada/ppa
 	sudo apt-get update
-	sudo apt-get install google-drive-ocamlfuse
+	sudo apt-get --yes install google-drive-ocamlfuse
 
