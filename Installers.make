@@ -5,6 +5,9 @@ DOCKER = /usr/bin/docker
 GDRIVEFUSE = /usr/bin/google-drive-ocamlfuse
 ADDAPTREPO = /usr/bin/add-apt-repository
 
+VPNCONFIG = ~/.vpnconfig.env
+
+
 help:
 	echo "For available installers see the contents of this makefile"
 
@@ -19,16 +22,16 @@ $(MOSH):
 # There was an error once, which I fixed with https://blog.adriaan.io/install-docker-on-raspberry-pi-4-with-ubuntu-20-04.html
 docker: $(DOCKER)
 $(DOCKER):
-	curl -fsSL https://get.docker.com -o get-docker.sh
-	sudo sh get-docker.sh
+	curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+	sudo sh /tmp/get-docker.sh
 
-./vpn.env:
+$(VPNCONFIG):
 	$(error VPN environment file not found!)
-vpnserver: $(DOCKER) ./vpn.env
+vpnserver: $(DOCKER) $(VPNCONFIG)
 	if [ -z $$(sudo docker ps -qf name=ipsec-vpn-server) ]; then \
 	  sudo docker run \
 	  --name ipsec-vpn-server \
-	  --env-file ./vpn.env \
+	  --env-file $(VPNCONFIG) \
 	  --restart=always \
 	  -v ikev2-vpn-data:/etc/ipsec.d \
 	  -p 500:500/udp \
