@@ -47,7 +47,7 @@ $(ADDAPTREPO):
 
 gdrivefuse: $(GDRIVEFUSE)
 $(GDRIVEFUSE): $(ADDAPTREPO)
-	sudo add-apt-repository ppa:alessandro-strada/ppa
+	sudo add-apt-repository --yes ppa:alessandro-strada/ppa
 	sudo apt-get update
 	sudo apt-get --yes install google-drive-ocamlfuse
 
