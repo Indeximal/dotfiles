@@ -8,3 +8,5 @@
 	cc = commit --all
 [credential]
 	helper = store
+[core]
+	editor = vim
