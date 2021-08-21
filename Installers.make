@@ -53,6 +53,7 @@ $(GDRIVEFUSE): $(ADDAPTREPO)
 	sudo add-apt-repository --yes ppa:alessandro-strada/ppa
 	sudo apt-get update
 	sudo apt-get --yes install google-drive-ocamlfuse
+	sudo touch $(GDRIVEFUSE)  # otherwise Make wants to rebuild it everytime
 
 ffmpeg: $(FFMPEG)
 $(FFMPEG):
