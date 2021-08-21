@@ -70,7 +70,7 @@ $(FACEALIGNERREPO):
 	git clone https://github.com/Indeximal/photo-a-day-aligner.git $@
 
 ~/venvdir/facelapse: $(PIP) $(FACEALIGNERREPO)
-	# The apt install is only necessary because of an error when using the preinstalled version. Also its nicly idempotent.
+	# The apt install is only necessary because of an error when using the preinstalled version. Also isn't nicely idempotent.
 	sudo apt-get --yes install python3-venv
 	python3 -m venv --clear $@
 	source $@/bin/activate && python3 -m pip install -r $(FACEALIGNERREPO)/requirements.txt
