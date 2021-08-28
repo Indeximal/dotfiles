@@ -1,4 +1,4 @@
-set -gx EDIOR vim
+set -gx EDITOR vim
 
 # Don't show any greetings
 set fish_greeting ""
