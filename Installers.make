@@ -1,5 +1,6 @@
 SHELL = /bin/bash
 
+FISH = /usr/bin/fish
 MOSH = /usr/bin/mosh
 DOCKER = /usr/bin/docker
 GDRIVEFUSE = /usr/bin/google-drive-ocamlfuse
@@ -14,9 +15,15 @@ VPNCONFIG = ~/.vpnconfig.env
 help:
 	echo "For available installers see the contents of this makefile"
 
-all: mosh docker vpnserver gdrivefuse ffmpeg pip facelapse
-essentials: mosh gdrivefuse pip
+all: fish mosh docker vpnserver gdrivefuse ffmpeg pip facelapse
+essentials: fish mosh gdrivefuse pip
 
+
+fish: $(FISH)
+$(FISH): $(ADDAPTREPO)
+	sudo apt-add-repository --yes ppa:fish-shell/release-3
+	sudo apt-get update
+	sudo apt-get --yes install fish
 
 mosh: $(MOSH)
 $(MOSH):

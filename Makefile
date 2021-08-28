@@ -1,7 +1,7 @@
 DEVDIR = ~/Dev/
 VENVDIR = ~/venvdir/
 
-all: clean devdir venvdir link
+all: clean devdir venvdir link chshell
 
 link:
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
@@ -16,6 +16,9 @@ $(DEVDIR) $(VENVDIR):
 	mkdir -p $@
 devdir: $(DEVDIR)
 venvdir: $(VENVDIR)
+
+chshell:
+	chsh -s /usr/bin/fish
 
 clean:
 	rm -f ~/.gitconfig
