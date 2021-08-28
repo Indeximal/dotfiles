@@ -5,6 +5,7 @@ all: clean devdir venvdir link
 
 link:
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	mkdir -p ~/.gdfuse/default
 	[ -f ~/.gdfuse/default/config ] || ln -s $(PWD)/gdriveconfig ~/.gdfuse/default/config
 	[ -f ~/.config/fish/config.fish ] || ln -s $(PWD)/config.fish ~/.config/fish/config.fish
@@ -18,6 +19,7 @@ venvdir: $(VENVDIR)
 
 clean:
 	rm -f ~/.gitconfig
+	rm -f ~/.vimrc
 	rm -f ~/.gdfuse/default/config
 	rm -f ~/.config/fish/config.fish
 	rm -f ~/.config/fish/functions
