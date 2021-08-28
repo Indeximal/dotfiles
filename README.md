@@ -40,15 +40,14 @@ chown --recursive "${USERNAME}":"${USERNAME}" "${home_directory}/.ssh"
 
 # Disable root SSH login with password
 sed --in-place 's/^PermitRootLogin.*/PermitRootLogin prohibit-password/g' /etc/ssh/sshd_config
-if sshd -t -q; then systemctl restart sshd fi
+if sshd -t -q; then systemctl restart sshd; fi
 
 # Set up dotfiles and install programs
-su - ${USERNAME}
-cd ~
-git clone https://github.com/Indeximal/dotfiles.git
-cd dotfiles
-make all
+git clone https://github.com/Indeximal/dotfiles.git ${home_directory}/dotfiles
+cd ${home_directory}/dotfiles
+apt install make
 make -f Installers.make essentials
+# make all  # only works for the current user, which is root in this script
 ```
 
 ## Todos
