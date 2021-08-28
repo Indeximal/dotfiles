@@ -52,7 +52,6 @@ make -f Installers.make essentials
 ```
 
 ## Todos
-[ ] Installers for a better Samba and GDrive Fuse
-[ ] Change shell?
-[ ] Facelapse dependencies
+[ ] Installers for Samba
+[ ] vim plugins (especially for fish scripts)
 
