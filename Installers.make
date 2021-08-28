@@ -7,6 +7,7 @@ GDRIVEFUSE = /usr/bin/google-drive-ocamlfuse
 ADDAPTREPO = /usr/bin/add-apt-repository
 FFMPEG = /usr/bin/ffmpeg
 PIP = /usr/bin/pip3
+CMAKE = /usr/bin/cmake
 FACEALIGNERREPO = ~/facelapse
 
 VPNCONFIG = ~/.vpnconfig.env
@@ -70,6 +71,9 @@ pip: $(PIP)
 $(PIP):
 	sudo apt-get --yes install python3-pip
 
+$(CMAKE):
+	sudo apt-get --yes install cmake
+
 facelapse: $(FFMPEG) $(FACEALIGNERREPO) ~/venvdir/facelapse ~/shape_predictor_68_face_landmarks.dat
 
 $(FACEALIGNERREPO):
@@ -77,10 +81,11 @@ $(FACEALIGNERREPO):
 	mkdir -p $@
 	git clone https://github.com/Indeximal/photo-a-day-aligner.git $@
 
-~/venvdir/facelapse: $(PIP) $(FACEALIGNERREPO)
+~/venvdir/facelapse: $(PIP) $(FACEALIGNERREPO) $(CMAKE)
 	# The apt install is only necessary because of an error when using the preinstalled version. Also isn't nicely idempotent.
 	sudo apt-get --yes install python3-venv
 	python3 -m venv --clear $@
+	source $@/bin/activate && python3 -m pip install wheel
 	source $@/bin/activate && python3 -m pip install -r $(FACEALIGNERREPO)/requirements.txt
 
 ~/shape_predictor_68_face_landmarks.dat:

@@ -44,6 +44,7 @@ if sshd -t -q; then systemctl restart sshd; fi
 
 # Set up dotfiles and install programs
 git clone https://github.com/Indeximal/dotfiles.git ${home_directory}/dotfiles
+chown -R cyrill:cyrill dotfiles/
 cd ${home_directory}/dotfiles
 apt install make
 make -f Installers.make essentials
