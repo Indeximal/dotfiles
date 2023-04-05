@@ -25,7 +25,7 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.gdfuse/default/config
 	rm -f ~/.config/fish/config.fish
-	rm -f ~/.config/fish/functions
+	rm -rf ~/.config/fish/functions
 
 .PHONY: all link devdir clean
 
