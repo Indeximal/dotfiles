@@ -12,10 +12,12 @@ This might easly change in the future.
 ## Usage
 Clone the repo and run
 ```
-# Link dotfiles and set up environment 
+# Link dotfiles and set up environment. Run as unpriviledges sudoers user.
 make all
-# Install essential executables
+# Install essential executables. Can be run as root (for essentials)
 make -f Installers.make essentials
+# Install facelapse prerequisites (as unprivildeged)
+make -f Installers.make facelapse
 ```
 
 When creating a new droplet on DigitalOcean use this code as user data.
@@ -52,6 +54,6 @@ make -f Installers.make essentials
 ```
 
 ## Todos
-[ ] Installers for Samba
-[ ] vim plugins (especially for fish scripts)
+- [ ] Installers for Samba
+- [ ] vim plugins (especially for fish scripts)
 

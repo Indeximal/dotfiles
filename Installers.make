@@ -17,7 +17,7 @@ help:
 	echo "For available installers see the contents of this makefile"
 
 all: fish mosh docker vpnserver gdrivefuse ffmpeg pip facelapse
-essentials: fish mosh gdrivefuse pip
+essentials: fish gdrivefuse pip
 
 
 fish: $(FISH)
