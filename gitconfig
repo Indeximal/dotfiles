@@ -1,12 +1,8 @@
 [user]
 	email = indeximal@gmail.com
 	name = Indeximal
+[commit]
+	gpgsign = true
 [alias]
 	s = status
-	c = commit
-	aa = add --all
-	cc = commit --all
-[credential]
-	helper = store
-[core]
-	editor = vim
+	glog = log --graph --oneline
