@@ -13,3 +13,6 @@
 	use-branch = "!f() { git symbolic-ref HEAD \"refs/heads/$1\"; }; f"
 	# Cleanup-branches asks to delete all branches which do not make tracking branches on origin anymore.
 	cleanup-branches = "!f() { git remote prune origin && for branch in $(git for-each-ref --format '%(refname:short) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" { print $1 }'); do git branch -d \"$branch\" || { read -p \"Force delete '$branch'? (y/N) \" yn; case \"$yn\" in [Yy]*) git branch -D \"$branch\";; *) echo \"Skipped $branch\";; esac; }; done; }; f"
+	# reattach-all reattaches detached submodules if they have a local branch which points to the same ref.
+	reattach-all = submodule foreach --recursive "sh -c 'if [ \"$(git rev-parse --abbrev-ref HEAD)\" = HEAD ]; then branch=$(git for-each-ref --format=\"%(refname:short)\" refs/heads --points-at HEAD | head -n1); [ -n \"$branch\" ] && git checkout \"$branch\"; fi; exit 0'"
+
